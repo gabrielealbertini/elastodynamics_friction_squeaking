@@ -1,0 +1,7 @@
+how to generate a mesh from terminal
+
+gmsh file.geo -<dimension> -order <order>
+e.g.
+
+gmsh mesh.geo -2 -order 1 -format msh2
+
