@@ -1,0 +1,108 @@
+user parameters [
+     # NAMES
+
+     simulation_name      = dynamic_2d_231
+     load_simulation_name = equi_pure_shear_2d_TE1.60e+06nu0.45rho1050pstress0_taui0.00e+00sigi1.00e+03_L0.04Ht0.01_elem1600
+
+     # FOLDERS
+     output_folder       = raw-output-data/
+     paraview_folder     = paraview/
+     restart_load_folder = restart/static_equilibrium/
+     restart_dump_folder = restart/
+
+     # BOUNDARY CONDITIONS
+     top_traction   = [ 0.00e+00 , -1.00e+03 ]
+     bot_traction   = [-0.00e+00 ,  1.00e+03 ]
+     left_traction  = [     0 , -0.00e+00 ]
+     right_traction = [     0 ,  0.00e+00 ]
+
+     shear_velocity = 0.0050
+     shear_acceleration_time = 5.00e-04
+     keep_accelerating = 0.0000
+
+     #block_x_bcs = slider_top,slider_left,slider_right
+     #block_y_bcs = slider_top,slider_left,slider_right
+     #block_z_bcs  = slider_back
+     
+     # INTERFACE
+     vertical_normals = true
+     pretend_is_in_contact = false
+
+     # NUCLEATION
+     nuc_center    = 2.0e-02
+     nuc_half_size = 5.0e-03
+     nuc_w_zone    = 1.00e-03
+     nuc_speed     = 1.00e+01
+
+
+     # INTERFACE HET
+     interface_heterogeneity      = true
+     heterogeneity_start_position = 3.80e-02
+     heterogeneity_trans_position = 3.90e-02
+     heterogeneity_d_c  = 1.00e-06
+     heterogeneity_mu_s = 0.00
+     heterogeneity_mu_k = 0.00
+
+     # MESH
+     spatial_dimension = 2
+     mesh              = meshes/block_2d_L0.04_Ht0.01_msh1600_quad4.msh
+     defrig_setup      = true
+     
+     # TIME
+     simulation_time  = 0.06
+     time_step_factor = 0.10
+
+     # DUMP
+     #dump_heights          = [0.0075] # <-------------------------------------------------------------------------
+     dump_height_tolerance = 5e-8  
+
+     # DUMP AT A PRECISE TIME
+     # precise_dump_time = 6.51586e-05
+
+     # FULL DUMP
+     #full_dump_f = 0.0001
+
+     # FREQUENCY THRESHOLD
+     rel_slip_for_highf = 0.1
+          
+     # INTERFACE TEXT DUMPER 
+     interface_dump_highf = 0.8e-05
+     interface_dump_lowf  = 0.8e-05 #1e-9 # <-------------------------------------------------------------------------
+     interface_dump_fields = displacement,velocity,friction_traction,contact_pressure # is_in_contact,is_sticking, # binary_shear_info,binary_normal_info,cohesive_shear,cohesive_normal,shear_gap_rate,shear_gap,normal_gap_rate,normal_gap,displacement,velocity,mu_k,mu_s,is_in_contact,is_sticking,friction_traction,contact_pressure,slip_velocity,slip,cumulative_slip
+     
+     # AT DISTANCE TEXT DUMPER
+     at_distance_dump_highf = 1.74e-05
+     at_distance_dump_lowf  = 1.74e-05 #1e-9 # <-------------------------------------------------------------------------
+
+     # GLOBAL TEXT DUMPER
+     global_dump_highf = 1.74e-05
+     global_dump_lowf  = 1.74e-05 #1e-9 # <-------------------------------------------------------------------------
+     
+     # FULL PARAVIEW DUMPER  # value cannot be given in 1e6 format
+     dump_paraview = false
+     nb_max_paraview_dumps = 1000
+     paraview_dump_f    = 0.0001
+]
+
+
+friction linear_slip_weakening simplified_prakash_clifton [ # rubin_ampuero [ no_regularisation [ 
+     mu_s = 2.10
+     mu_k = 2.10
+     d_c  = 1.00e-06
+     t_star = 1.00e-03
+]
+
+
+
+material sls_deviatoric [
+     name = slider
+     rho  = 1050
+     nu   = 0.45
+     E    = 1.60e+06
+     Ev   = 6.40e+05
+     Eta  = 6.40e+01
+     Plane_Stress = 0
+
+]
+
+

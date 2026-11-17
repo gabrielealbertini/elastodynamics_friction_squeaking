@@ -1,0 +1,39 @@
+user parameters [
+
+     simulation_name = equi_pure_shear_2d_TE1.60e+06nu0.45rho1050pstress0_taui0.00e+00sigi1.00e+03_L0.04Ht0.005_elem3200
+
+     # FOLDERS
+     output_folder       = raw-output-data/
+     paraview_folder     = raw-output-data/
+     restart_load_folder = restart/
+     restart_dump_folder = restart/static_equilibrium/
+
+     # MESH
+     spatial_dimension = 2
+     mesh              = meshes/block_2d_L0.04_Ht0.005_msh3200_quad4.msh
+     antisym_setup     = true # does not matter for analytical
+
+     # BOUNDARY CONDITIONS
+     top_traction   = [ 0.00e+00 ,-1.00e+03 , 0. ]
+     bot_traction   = [-0.00e+00 , 1.00e+03 , 0. ]
+     left_traction  = [     0 , -0.00e+00 , 0. ]
+     right_traction = [     0 ,  0.00e+00 , 0. ]
+
+     #block_x_bcs = topleftblock_bottom_left # ,-separated
+     #block_y_bcs = # ,-separated
+     #block_z_bcs = topleftblock_bottom_back # ,-separated
+
+     maximal_iteration = 2
+     precision         = 1e-5
+]
+
+material elastic [
+     name = slider
+     rho  = 1050
+     nu   = 0.45
+     E    = 1.60e+06
+     Plane_Stress = 0
+]
+
+
+
